@@ -12,7 +12,11 @@ export class CommonPage {
     cy.url().should(includeProperty, endpoint);
   }
   typeOnInputByDataTest(inputDataTest, inputValue) {
-    cy.get(`[data-test="${inputDataTest}"]`).clear().type(inputValue);
+    if (inputValue) {
+      // si y solo sí, inputvalue existe y es real.
+      cy.get(`[data-test="${inputDataTest}"]`).clear().type(inputValue);
+    }
+    // si no es valido o no viene nada,  no hace nada.
   }
 
   checkValueOnInputByDataTest(inputDataTest, inputValue) {

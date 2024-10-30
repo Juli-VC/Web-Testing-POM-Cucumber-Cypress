@@ -44,8 +44,14 @@ Then("It should show error message: Username is required", () => {
 Then("It should show error message: Password is required", () => {
   loginPage.showsErrorMessagesPasswordRequired();
 });
-Then("It should show error message: both inputs dont match any user", () => {
-  loginPage.showsErrorMessageInvalidLoginMatch();
+Then(
+  "It should show error message: Epic sadface: Username and password do not match any user in this service",
+  () => {
+    loginPage.showsErrorMessageInvalidLoginMatch();
+  }
+);
+Then("It should show error message: {string}", (message) => {
+  loginPage.showsErrorMessage(message);
 });
 
 // Then("It should show error messages"), () => {};

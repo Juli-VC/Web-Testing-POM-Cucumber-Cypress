@@ -25,36 +25,51 @@ Feature: Login test suite
     #     Then I check that the url "include" the endpoint "inventory"
 
     #
-    Scenario: Login error. Submit without typing nothing.
-        Given I check that the url "not.include" the endpoint "inventory"
+    # Scenario: Login error. Submit without typing nothing.
+    #     Given I check that the url "not.include" the endpoint "inventory"
+    #     And It should NOT show error messages
+    #     When I click on the button "login-button"
+    #     Then It should show error message: "Epic sadface: Username is required"
+    # Scenario: Login error. Submit without typing username.
+    #     Given I check that the url "not.include" the endpoint "inventory"
+    #     And It should NOT show error messages
+    #     And I type in the input "password" the value "secret_sauce"
+    #     When I click on the button "login-button"
+    #     Then It should show error message: "Epic sadface: Username is required"
+    # Scenario: Login error. Submit without typing password.
+    #     Given I check that the url "not.include" the endpoint "inventory"
+    #     And It should NOT show error messages
+    #     And I type in the input "username" the value "standard_user"
+    #     When I click on the button "login-button"
+    #     Then It should show error message: "Epic sadface: Password is required"
+    # Scenario: Login error. Invalid credentials login.
+    #     Given I check that the url "not.include" the endpoint "inventory"
+    #     And It should NOT show error messages
+    #     And I type in the input "username" the value "standard_user"
+    #     And I type in the input "password" the value "1234"
+    #     When I click on the button "login-button"
+    #     Then It should show error message: "Epic sadface: Username and password do not match any user in this service"
+
+    # Scenario: Login error. Discard error-message container.
+    #     Given I check that the url "not.include" the endpoint "inventory"
+    #     And It should NOT show error messages
+    #     And I type in the input "username" the value "standard_user"
+    #     And I type in the input "password" the value "1234"
+    #     When I click on the button "login-button"
+    #     Then It should show error message: "Epic sadface: Username and password do not match any user in this service"
+    #     When I click on the button "error-button"
+    #     Then It should NOT show error messages
+    Scenario Outline: Scenario Outline name
         And It should NOT show error messages
+        And I type in the input "username" the value "<userValue>"
+        And I type in the input "password" the value "<passwordValue>"
         When I click on the button "login-button"
-        Then It should show error message: Username is required
-    Scenario: Login error. Submit without typing username.
-        Given I check that the url "not.include" the endpoint "inventory"
-        And It should NOT show error messages
-        And I type in the input "password" the value "secret_sauce"
-        When I click on the button "login-button"
-        Then It should show error message: Username is required
-    Scenario: Login error. Submit without typing password.
-        Given I check that the url "not.include" the endpoint "inventory"
-        And It should NOT show error messages
-        And I type in the input "username" the value "standard_user"
-        When I click on the button "login-button"
-        Then It should show error message: Password is required
-    Scenario: Login error. Invalid login.
-        Given I check that the url "not.include" the endpoint "inventory"
-        And It should NOT show error messages
-        And I type in the input "username" the value "standard_user"
-        And I type in the input "password" the value "1234"
-        When I click on the button "login-button"
-        Then It should show error message: both inputs dont match any user
-    Scenario: Login error. Discard error-message container.
-        Given I check that the url "not.include" the endpoint "inventory"
-        And It should NOT show error messages
-        And I type in the input "username" the value "standard_user"
-        And I type in the input "password" the value "1234"
-        When I click on the button "login-button"
-        Then It should show error message: both inputs dont match any user
+        Then It should show error message: "<errorMessage>"
         When I click on the button "error-button"
         Then It should NOT show error messages
+        Examples:
+            | userValue | passwordValue | errorMessage                                                              |
+            |           |               | Epic sadface: Username is required                                        |
+            |           | password2     | Epic sadface: Username is required                                        |
+            | username4 |               | Epic sadface: Password is required                                        |
+            | username5 | password4     | Epic sadface: Username and password do not match any user in this service |
