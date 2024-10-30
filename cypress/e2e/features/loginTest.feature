@@ -49,3 +49,12 @@ Feature: Login test suite
         And I type in the input "password" the value "1234"
         When I click on the button "login-button"
         Then It should show error message: both inputs dont match any user
+    Scenario: Login error. Discard error-message container.
+        Given I check that the url "not.include" the endpoint "inventory"
+        And It should NOT show error messages
+        And I type in the input "username" the value "standard_user"
+        And I type in the input "password" the value "1234"
+        When I click on the button "login-button"
+        Then It should show error message: both inputs dont match any user
+        When I click on the button "error-button"
+        Then It should NOT show error messages
