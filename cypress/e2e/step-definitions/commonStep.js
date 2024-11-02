@@ -40,3 +40,16 @@ When(
     commonPage.checkValueOnInputByDataTest(inputDataTest, inputValue);
   }
 );
+When(
+  "I check that the element {string} should {string}",
+  (elementDataTest, status) => {
+    commonPage.checkStatusOnElementByDataTest(elementDataTest, status);
+  }
+);
+
+When(
+  "I check that the element {string} should {string} the content {string}",
+  (elementDataTest, statusContent, content) => {
+    commonPage.checkElementContent(elementDataTest, statusContent, content);
+  }
+);
