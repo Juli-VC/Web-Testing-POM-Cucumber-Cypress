@@ -70,3 +70,22 @@ Feature: Main test suite
         And I check the "last" product on the list has the "name" equal to "Sauce Labs Onesie"
         # # Comprueba  que el último producto de la lista tiene el precio 7.99"
         Then I check the "last" product on the list has the "price" equal to "7.99"
+
+    # Test usando el nuevo step para comprobar el value de un atributo segun su posicion
+    Scenario: Check products by position in the list when sorting by price
+        Given The select has the active choice "Name (A to Z)"
+        And I check that the product 1 in the position list has the "name" attribute with the "Sauce Labs Backpack" value
+        And I check that the product 1 in the position list has the "price" attribute with the "29.99" value
+        And I check that the product 6 in the position list has the "name" attribute with the "Test.allTheThings() T-Shirt (Red)" value
+        And I check that the product 6 in the position list has the "price" attribute with the "15.99" value
+        When I select the option "Price (low to high)"
+        Then I check that the product 1 in the position list has the "name" attribute with the "Sauce Labs Onesie" value
+        And I check that the product 1 in the position list has the "price" attribute with the "7.99" value
+        And I check that the product 6 in the position list has the "name" attribute with the "Sauce Labs Fleece Jacket" value
+        And I check that the product 6 in the position list has the "price" attribute with the "49.99" value
+        When I select the option "Price (high to low)"
+        Then I check that the product 1 in the position list has the "name" attribute with the "Sauce Labs Fleece Jacket" value
+        And I check that the product 1 in the position list has the "price" attribute with the "49.99" value
+        And I check that the product 6 in the position list has the "name" attribute with the "Sauce Labs Onesie" value
+        And I check that the product 6 in the position list has the "price" attribute with the "7.99" value
+

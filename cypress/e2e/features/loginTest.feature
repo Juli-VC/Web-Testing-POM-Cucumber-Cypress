@@ -59,6 +59,7 @@ Feature: Login test suite
     #     Then It should show error message: "Epic sadface: Username and password do not match any user in this service"
     #     When I click on the button "error-button"
     #     Then It should NOT show error messages
+    
     Scenario Outline: Scenario Outline name
         And It should NOT show error messages
         And I type in the input "username" the value "<userValue>"
