@@ -35,4 +35,23 @@ export class CommonPage {
   checkElementContent(elementDataTest, statusContent, content) {
     cy.get(`[data-test="${elementDataTest}"]`).and(statusContent, content);
   }
+
+  //
+  waitXSeconds(seconds) {
+    cy.wait(seconds);
+  }
+
+  /// Función para testear accesibilidad
+  testAccesibilityInScreen() {
+    cy.injectAxe();
+    cy.checkA11y();
+  }
+
+  testAccesibilityOnElement(elementLocator) {
+    cy.injectAxe();
+    cy.checkA11y(elementLocator);
+  }
+  checkBodyText(status, text) {
+    cy.get("body").should(status, text);
+  }
 }

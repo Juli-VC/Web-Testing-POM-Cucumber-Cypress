@@ -66,4 +66,47 @@ export class LoginPage extends CommonPage {
     // inputs "x" svg error-icons (without specifying)
     cy.get(".form_group svg").should("be.visible");
   }
+  //Javi's
+  // Functions parameterized
+  typeUserName(userName) {
+    cy.get('[data-test="username"]', { timeout: 8000 })
+      .should("be.empty")
+      .type(userName)
+      .should("have.value", userName);
+  }
+
+  typePassword(password) {
+    cy.get('[data-test="password"]')
+      .should("be.empty")
+      .type(password)
+      .should("have.value", password);
+  }
+
+  typeOnInputByDataTest(dataTest, Text) {
+    cy.get("[data-test=" + dataTest + "]")
+      .should("be.empty")
+      .type(Text)
+      .should("have.value", Text);
+  }
+
+  clickLoginButton() {
+    cy.get('[data-test="login-button"]').click();
+  }
+
+  checkLoginLogo(status) {
+    cy.get(".login_logo").should(status);
+  }
+
+  loginWithValidCredentials() {
+    this.typeStandardUser();
+    this.typeSecretSaucePassword();
+    this.clickLoginButton();
+  }
+
+  //accesibility
+  betterLoginWithValidCredentials() {
+    this.typeOnInputByDataTest("username", "standard_user");
+    this.typeOnInputByDataTest("password", "secret_sauce");
+    this.clickLoginButton();
+  }
 }

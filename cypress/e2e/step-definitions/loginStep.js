@@ -6,15 +6,21 @@ import { CommonPage } from "../pages/commonPage";
 let loginPage = new LoginPage();
 let commonPage = new CommonPage();
 
-Given("I check that the url {string} should {string}, {string}",(url, assertion, endpoint) => {
-  commonPage.checkUrlAndEndpoint(url, assertion, endpoint);
-});
+Given(
+  "I check that the url {string} should {string}, {string}",
+  (url, assertion, endpoint) => {
+    commonPage.checkUrlAndEndpoint(url, assertion, endpoint);
+  }
+);
 
 ///
 
-When("I login with the username {string} and password {string}",(userName, password) => {
-  loginPage.loginFlow(userName, password);
-});
+When(
+  "I login with the username {string} and password {string}",
+  (userName, password) => {
+    loginPage.loginFlow(userName, password);
+  }
+);
 
 When("I login with valid credentials", () => {
   loginPage.checkUrl("not.include", "inventory");
@@ -41,12 +47,20 @@ Then("It should show error message: Password is required", () => {
   loginPage.showsErrorMessagesPasswordRequired();
 });
 
-Then("It should show error message: Epic sadface: Username and password do not match any user in this service", () => {
-  loginPage.showsErrorMessageInvalidLoginMatch();
-});
+Then(
+  "It should show error message: Epic sadface: Username and password do not match any user in this service",
+  () => {
+    loginPage.showsErrorMessageInvalidLoginMatch();
+  }
+);
 
 Then("It should show error message: {string}", (message) => {
   loginPage.showsErrorMessage(message);
 });
 
 // Then("It should show error messages"), () => {};
+
+//accesibility
+Given("I login better with valid credentials for the standar_user", () => {
+  loginPage.betterLoginWithValidCredentials();
+});
