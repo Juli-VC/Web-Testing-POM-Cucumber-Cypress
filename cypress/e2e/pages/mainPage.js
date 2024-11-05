@@ -50,15 +50,19 @@ export class MainPage {
       });
   }
 
-    /*
+  /*
   Con respecto a la funcion checkPositionListHasAttributeEqualTo, 
   la simplificaría indicando que la selecciñon se hace por posición,
   creo la funcion y el paso relacionado
   */
-  checkValueOfProductByPositionOnTheList(productPositionList, productAttribute, attributevalue) {
+  checkValueOfProductByPositionOnTheList(
+    productPositionList,
+    productAttribute,
+    attributevalue
+  ) {
     cy.get(`[data-test="inventory-item-${productAttribute}"]`)
       .eq(productPositionList - 1)
-      .should("contain", attributevalue); 
+      .should("contain", attributevalue);
   }
 
   // Version para "cualquier" posición (que NO use "primer/ultimo" de la lista)
@@ -103,5 +107,18 @@ export class MainPage {
       "have.text",
       option
     );
+  }
+
+  //Inventory-Items
+  clickInventoryItemByPosition(itemPosition) {
+    cy.get('[data-test="inventory-item"]')
+      .eq(itemPosition - 1)
+      .should("be.visible")
+      .find(".inventory_item_label")
+      .find("a")
+      .click();
+  }
+  addToCartTheInventoryItem() {
+    cy.get('[data-test="add-to-cart"]').should("be.visible").click();
   }
 }

@@ -10,6 +10,7 @@ module.exports = defineConfig({
   e2e: {
     chromeWebSecurity: false,
     specPattern: "**/*.feature",
+    failOnStatusCode: false,
     async setupNodeEvents(on, config) {
       await addCucumberPreprocessorPlugin(on, config);
       on(
@@ -18,5 +19,7 @@ module.exports = defineConfig({
       );
       return config;
     },
+    numTestsKeptInMemory: 3,
+    defaultCommandTimeout: 1000,
   },
 });

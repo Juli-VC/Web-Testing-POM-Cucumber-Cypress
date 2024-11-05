@@ -37,6 +37,17 @@ export class CommonPage {
   }
 
   //
+  clickButtonByText(text) {
+    cy.contains("button", text).should("be.visible").click();
+  }
+  checkButtonStatusByText(text, status) {
+    cy.contains("button", text).should(status);
+  }
+  checkCountsButtonByText(text, number) {
+    cy.get("button").filter(`:contains(${text})`).should("have.length", number);
+  }
+
+  //
   waitXSeconds(seconds) {
     cy.wait(seconds);
   }

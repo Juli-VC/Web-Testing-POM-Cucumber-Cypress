@@ -60,6 +60,10 @@ Then("It should show error message: {string}", (message) => {
 
 // Then("It should show error messages"), () => {};
 
+//session
+Given("I login and keep the sesion for the standar_user", () => {
+  loginPage.loginKeepSession();
+});
 //accesibility
 Given("I login better with valid credentials for the standar_user", () => {
   loginPage.betterLoginWithValidCredentials();

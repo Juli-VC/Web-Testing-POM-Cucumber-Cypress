@@ -52,6 +52,15 @@ When(
     commonPage.checkStatusOnElementByDataTest(elementDataTest, status);
   }
 );
+When("I check that the button {string} should {string}", (text, status) => {
+  commonPage.checkButtonStatusByText(text, status);
+});
+When(
+  "I check that the button {string} shows only {int} times",
+  (text, number) => {
+    commonPage.checkCountsButtonByText(text, number);
+  }
+);
 
 When(
   "I check that the element {string} should {string} the content {string}",
@@ -59,6 +68,9 @@ When(
     commonPage.checkElementContent(elementDataTest, statusContent, content);
   }
 );
+When("I click on Button that contain text {string}", (text) => {
+  commonPage.clickButtonByText(text);
+});
 
 // Steps para test de accesibilidad
 Then("I test the accesibility in all the screen", () => {
