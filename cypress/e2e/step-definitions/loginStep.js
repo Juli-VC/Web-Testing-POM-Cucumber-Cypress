@@ -6,6 +6,9 @@ import { CommonPage } from "../pages/commonPage";
 let loginPage = new LoginPage();
 let commonPage = new CommonPage();
 
+/*
+El "I check that the url {string} should {string}, {string}" pertenece a commonSteps no a loginSteps  
+*/
 Given(
   "I check that the url {string} should {string}, {string}",
   (url, assertion, endpoint) => {
