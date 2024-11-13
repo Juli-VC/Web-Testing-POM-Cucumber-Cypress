@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cy:smoke": "cypress run --env tags=@smoke --spec '**/*.feature'"
   },
   "keywords": [],
   "author": "",
@@ -18,6 +19,8 @@
     "axe-core": "^4.10.2",
     "cypress": "^13.15.1",
     "cypress-axe": "^1.5.0",
+    "cypress-mochawesome-reporter": "^3.8.2",
+    "cypress-on-fix": "^1.0.3",
     "esbuild": "^0.24.0"
   }
 }
