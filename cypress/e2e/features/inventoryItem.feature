@@ -1,9 +1,15 @@
 Feature: Inventory item
+
     Background: Login
         Given I visit "https://www.saucedemo.com/"
         And I check that the url "not.include" the endpoint "inventory"
         When I login with valid credentials
-        Then I check that the url "include" the endpoint "inventory"
+# Este step no es necesario, ya que el step anterior ya comprueba que la url no incluye el endpoint "inventory"
+#Then I check that the url "include" the endpoint "inventory"
+
+#Estan muy bien estos 2 tests, pero podrias añadir los productos a la cesta por su nommbre en lugar de por si posición en la lista?
+# Ya que haces eso comrpueba que los nombres de los productos añadidos a la cesta son correctos en el carrito
+
     Scenario: Add a product to the cart from inventory-item details page
         Given I check that the element "shopping-cart-badge" should "not.exist"
         And I check that the element "remove" should "not.exist"
@@ -54,5 +60,11 @@ Feature: Inventory item
         When I click on the button "continue-shopping"
         And I check that the url "include" the endpoint "inventory"
         And I check that the element "shopping-cart-badge" should "contain" the content "2"
+
+# Podrías en lugar de usar estas aserciones que dependen del resto de elementos en la tabla, comprobar que el botón 
+# add to cart es visible y el de remove no existe en el producto antes de añadirlo al carrito y lo contrario
+# desupés de añadirlo al carrito
+
         And I check that the button "Remove" shows only 2 times
         Then I check that the button "Add to cart" shows only 4 times
+
